@@ -1,1 +1,1 @@
-Lravel and vue POS and Inventory
+Laravel and vue POS and Inventory
