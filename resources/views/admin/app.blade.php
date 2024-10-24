@@ -7,10 +7,11 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <meta name="csrf-token" content="{{ csrf_token() }}" />
     <title>POS</title>
+
 </head>
 
 <body>
-    <div id="invextry-admin"></div>
+    <div id="xpert-admin"></div>
     @vite('resources/admin-resources/main.js')
 </body>
 

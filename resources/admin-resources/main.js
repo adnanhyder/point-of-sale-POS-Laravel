@@ -14,4 +14,4 @@ app.use(router);
 
 app.config.globalProperties.$demoIMG = '/img/placeholder.png'
 
-app.mount("#invextry-admin");
+app.mount("#xpert-admin");
