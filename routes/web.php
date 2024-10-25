@@ -29,12 +29,12 @@ Route::get('/', function () {
 })->name('home');
 
 // create demo site
-Route::get('/demo', function () {
-    $seeder = new DevDemo();
-    $seeder->run();
+// Route::get('/demo', function () {
+//     $seeder = new DevDemo();
+//     $seeder->run();
 
-    return redirect('admin');
-});
+//     return redirect('admin');
+// });
 
 // All Auth Related Route
 Route::get('/register', [RegisterController::class, 'registrationForm'])->name('registrationForm');
@@ -51,6 +51,25 @@ Route::get('/admin/{any?}', function () {
 
     return redirect('login');
 })->where('any', '.*')->name('admin');
+
+Route::get('/{any?}', function () {
+    if (Auth::check()) {
+        return view('.app');
+    }
+
+    return redirect('login');
+})->where('any', '.*')->name('admin');
+
+
+// Route::get('/demo', function () {
+//     if (app()->environment('local')) {
+//         $seeder = new DevDemo();
+//         $seeder->run();
+//         return redirect('admin');
+//     }
+//     abort(403); // Forbidden in production
+// });
+
 
 // All route available only for authenticated users
 Route::group(['middleware' => ['auth']], function () {

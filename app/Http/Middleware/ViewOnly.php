@@ -12,11 +12,11 @@ class ViewOnly
     {
         $http_method = $request->method();
 
-        if ($http_method == 'POST' || $http_method == 'PUT' || $http_method == 'DELETE') {
-            return response()->json([
-                'message' => 'no permision to create, update and delete',
-            ], 403);
-        }
+        // if ($http_method == 'POST' || $http_method == 'PUT' || $http_method == 'DELETE') {
+        //     return response()->json([
+        //         'message' => 'no permision to create, update and delete',
+        //     ], 403);
+        // }
 
         return $next($request);
     }

@@ -1,5 +1,5 @@
 <script setup>
-import {  onMounted, reactive, ref } from "vue";
+import { onMounted, reactive, ref } from "vue";
 import axios from "axios";
 import { useAuthStore } from "../../stores/authStore";
 import Loader from "../../components/shared/loader/Loader.vue";
@@ -27,7 +27,6 @@ const current_page = ref(1);
 const selected_sales = ref([]);
 const all_selectd = ref(false);
 
-
 async function fetchData(
     page = current_page.value,
     perPage = per_page.value,
@@ -54,14 +53,14 @@ async function fetchData(
     selected_sales.value = [];
 }
 
-let showPaymentModal = ref(false)
+let showPaymentModal = ref(false);
 
 let paymentInfo = reactive({
-    invoice_id : '',
-    due_amount: ''
-})
+    invoice_id: "",
+    due_amount: "",
+});
 
-function openPaymentModal(invoice_id,due_amount) {
+function openPaymentModal(invoice_id, due_amount) {
     showPaymentModal.value = true;
     paymentInfo.invoice_id = invoice_id;
     paymentInfo.due_amount = due_amount;
@@ -144,7 +143,8 @@ onMounted(() => {
                         </td> -->
                         <td>{{ sale.invoice_date }}</td>
                         <td>{{ sale.invoice_ref }}</td>
-                        <td>{{ sale.supplier }}</td>
+                        <td>{{ sale.customer }}</td>
+                        <!-- <td>{{ sale.supplier }}</td> -->
                         <td>{{ sale.warehouse }}</td>
                         <td>{{ sale.total_amount }}</td>
                         <td>{{ sale.paid_amount }}</td>
@@ -202,7 +202,9 @@ onMounted(() => {
                             /> -->
                             <WalletSvgIcon
                                 v-if="authStore.userCan('create_payment')"
-                                @click="openPaymentModal(sale.id,sale.due_amount)"
+                                @click="
+                                    openPaymentModal(sale.id, sale.due_amount)
+                                "
                             />
                         </td>
                     </tr>
