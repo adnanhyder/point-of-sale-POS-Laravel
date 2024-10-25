@@ -48,27 +48,15 @@ Route::get('/admin/{any?}', function () {
     if (Auth::check()) {
         return view('admin.app');
     }
-
     return redirect('login');
 })->where('any', '.*')->name('admin');
 
-Route::get('/{any?}', function () {
+Route::get('/user/{any?}', function () {
     if (Auth::check()) {
-        return view('.app');
+        return view('user.app');
     }
-
     return redirect('login');
-})->where('any', '.*')->name('admin');
-
-
-// Route::get('/demo', function () {
-//     if (app()->environment('local')) {
-//         $seeder = new DevDemo();
-//         $seeder->run();
-//         return redirect('admin');
-//     }
-//     abort(403); // Forbidden in production
-// });
+})->where('any', '.*')->name('user');
 
 
 // All route available only for authenticated users

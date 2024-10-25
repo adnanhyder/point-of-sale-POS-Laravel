@@ -16,9 +16,10 @@ onMounted(async () => {
     adminReady.value = false;
 
     await authStore.getAuthUser();
-
+    //console.log(authStore.permissions.includes("manage_dashboard"));
     if (!authStore.permissions.includes("manage_dashboard")) {
-        window.location.href = "/";
+        window.location.href = "/user";
+        //adminReady.value = true;
     } else {
         adminReady.value = true;
     }

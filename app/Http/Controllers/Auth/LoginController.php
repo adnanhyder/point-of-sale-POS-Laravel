@@ -21,19 +21,20 @@ class LoginController extends Controller
 
     public function login(Request $request)
     {
-        // make the whole demo during new login in demosite. comment this portion on production
-        // $seeder = new DevDemo();
-        // $seeder->run();
+         //make the whole demo during new login in demosite. comment this portion on production
+//         $seeder = new DevDemo();
+//         $seeder->run();
 
         $credentials = $request->validate([
             'email' => 'required|email',
             'password' => 'required',
         ]);
+        $isAuthenticated = Auth::attempt($credentials, 100);
 
-        if (Auth::attempt($credentials, 100)) {
-            $request->session()->regenerate();
+        if ($isAuthenticated) {
+
+           $regeneratedSession =  $request->session()->regenerate();
             if (User::find(Auth::id())->can('manage_dashboard')) {
-
                 redirect()->route('admin');
             }
 

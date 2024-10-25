@@ -11,6 +11,7 @@
 </head>
 
 <body>
+
     <div id="xpert-admin"></div>
     @vite('resources/admin-resources/main.js')
 </body>
